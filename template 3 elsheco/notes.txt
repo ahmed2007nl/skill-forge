@@ -1,0 +1,123 @@
+@@-CSS rules with higher specificity 
+will take precedence over those with lower
+ specificity. Ensure your media query selectors
+  are at least as specific as your global styles.(media queries)
+
+-------------------------------------------------------------------------------
+  @@OtherLinks.onclick = (event) => {
+        megaMenu.classList.toggle("show");
+        // Stop the event from propagating to the document as the onclick
+        // event will propagate making collisons 
+        event.stopPropagation();
+    };
+
+   Without stopPropagation(), 
+   both event handlers (the one on OtherLinks and the one on 
+   document) would be triggered, which could result
+    in the mega menu opening and then immediately closing.
+
+------------------------------------------------------------------------------------
+   @@target=”_blank” makes the link opens in another tab
+
+------------------------------------------------------------------------------------
+  @@ algorithm to replace the over text by dots
+   let articlesContainer = document.getElementById("Cont-art") 
+let arrOfartiles = Array.from(articlesContainer.querySelectorAll(".box  >  p"));
+// console.log(arrOfartiles)
+
+arrOfartiles.forEach((p)=>{
+    if(p.innerText.length > 60){
+     let CutText = p.innerText.substring(0 , 60)
+     let newInnerText = `${CutText}.....` 
+     console.log(newInnerText)
+     p.innerText = newInnerText
+    }
+})
+-----------------------------------------------------------------------------------
+@@ in the gallery we have flashing animation here how we make it 
+
+@keyframes flashing {
+ 0% , 40% {
+opacity: 1;
+}
+100%{
+    opacity: 0;
+    width: 200%;
+    height: 200%;
+}
+}
+-----------------------------------------------------------------------------------
+@@/* zigzag of the gallery section  */
+.Gallery::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 24px; /* Height of the zigzag */
+     /* note : the color of the linear gradient must be equal to the background of the page */
+    background: linear-gradient(-135deg, #fff 12px , transparent 0%),
+    linear-gradient(135deg, #fff 12px , transparent 0%);
+    background-size: 24px;
+  
+}
+
+-----------------------------------------------------------------------------------
+@@clip path polygon(100% 50%, 0% 100%, 100% 100%)
+Notice the origin of each point is top left corner , 1st parameter is x-axis and 2nd
+parameter is y-axis (positions ofcourse) this is a triangle as there is 2 comma
+and three coordination for 3 points
+--------------------------------------------------------------------------------------
+@@Pseudo-elements do not work with images and form elements.
+
+-------------------------------------------------------------------------------------
+@@section of features filling the btn effect 
+علشان لو فيه حد مخدش باله من سبب عرض عمل 200%
+الفكرة اننا حطينا "لينيار جرادينت" من الشمال ورايح ناحية اليمين بلونين كل واحد واخد 50% من مساحة ال "لينيار جرادينت" 
+وبعد كده حطينا عرض الخلفية 200% عشان 100% منهم تكون ظاهرة تحت العنصر و 100% تكون مختفية لان العنصر مساحته اصلا 100% بس
+وبعد كده خلينا مكان الخلفية بيبدأ من "اليمين تحت " فبكده اللي هيظهر هيكون فقط ال 50% من الخلفية اللي هي بلون ابيض 
+ولما هنعمل "الهوفر" هنغير مكان الخلفية ويبقى الجزء "الشمال تحت" اللي ظاهر منها الللي هو ال50% بتاع الجزء الاحمر
+
+.features .container .b1 button{
+    color: #008000;
+    border-color: #008000;
+    background: linear-gradient(to right ,#008000 50%, white 50%  );
+    background-size: 200%  100%;
+    background-position: right ; عشان الحته البيضه على اليمين فهى الى تتشاف
+
+} 
+on hover {
+    background-position: left ;شان الحته الملونه على الشمال فهى الى تتشاف
+    color: white;
+}
+
+-----------------------------------------------------------------------------------
+@@ Pseudo classes creates a new anonymous element that lies outside the element so
+for a counter() function for example it only work within the element scope 
+therfore if we have a class with pseudo class ex: class{
+    counter-reset : Name of counter(opt)
+}
+class:after{
+    counter-increment : Name of counter ;
+    content : counter(Name of counter)
+}
+unfortunally it won't work
+
+bard:Counter Scoping:
+
+counter-reset defines the starting value for a counter within a specific scope.
+ This scope determines which elements will be affected by the reset.
+Elements nested within the scope inherit the counter value and can be 
+incremented using counter-increment.
+
+therfore psudo class isn't any more a desendant of info consequently it's 
+in the same starture of ser in the document tree 
+
+therfore it can't inherit the counter from ser as it's not the child of ser.
+=-=-=-=-=-=-=-==-=-=-=--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-
+to make the text inside a div vertical we use 
+writing-mode : vertical-rl as in pricing section , sign div . rotation isn't good
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-
+to center something using margin : Xpx auto 
+first the element must be display block to work +
+if the element is block it will take 100% width of the parent so it must have 
+definite width 
